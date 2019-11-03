@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
-import Plane from '../CartesianPlane/Plane/Plane';
+import CartesianPlane from '../CartesianPlane/CartesianPlane';
 
-function App() {
-  return <Plane />;
+export default function App() {
+  return <CartesianPlane />;
 }
-
-export default App;

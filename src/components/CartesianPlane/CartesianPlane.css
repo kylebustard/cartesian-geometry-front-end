@@ -1,0 +1,33 @@
+#YAxis {
+  border: 2px solid red;
+  background-color: lightcoral;
+  color: red;
+  z-index: 3;
+}
+
+#XAxis {
+  border: 2px solid darkorange;
+  background-color: orange;
+  color: darkorange;
+  z-index: 2;
+}
+
+#Grid {
+  border: 2px solid darkgreen;
+  background-color: lightgreen;
+  color: darkgreen;
+  z-index: 1;
+}
+
+#CartesianPlane {
+  border: 2px solid darkblue;
+  background-color: lightblue;
+  color: darkblue;
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+canvas {
+  position: absolute;
+}
