@@ -29,7 +29,7 @@ export default function XAxis() {
   });
 
   return (
-    <canvas ref={canvasRef} style={{ width: '300px', height: '300px' }}>
+    <canvas ref={canvasRef} width="700px" height="700px">
       X-Axis
     </canvas>
   );

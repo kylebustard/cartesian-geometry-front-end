@@ -40,11 +40,7 @@ export default function Grid() {
   });
 
   return (
-    <canvas
-      id="Grid"
-      ref={canvasRef}
-      style={{ width: '700px', height: '700px' }}
-    >
+    <canvas id="Grid" ref={canvasRef} width="700px" height="700px">
       Cartesian Plane Grid
     </canvas>
   );
