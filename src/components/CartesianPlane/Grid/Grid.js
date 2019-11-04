@@ -1,47 +1,48 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 
-export default function Grid() {
-  const canvasRef = useRef();
+function gridGapSize(s) {
+  return function gapSizeTimesLineNumber(i) {
+    return i * s;
+  };
+}
 
-  function createGrid() {
-    const points = [];
-    const count = 5;
+function makeLines(width) {
+  const grid = [];
+  const currentEdgeOfGrid = gridGapSize(10);
 
-    for (let x = 0; x < count; x++) {
-      for (let y = 0; y < count; y++) {
-        const u = x / count;
-        const v = y / count;
-        points.push([u, v]);
-      }
-    }
-
-    return points;
+  for (let i = 0; currentEdgeOfGrid(i) < width; i++) {
+    grid.push(
+      <line
+        key={i}
+        x1={currentEdgeOfGrid(i)}
+        y1="0"
+        x2={currentEdgeOfGrid(i)}
+        y2={width}
+        stroke="silver"
+      />
+    );
   }
+  const xLineCount = grid.push;
 
-  const points = createGrid();
-  console.log(points);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+  return function makeYLines(height) {
+    for (let i = 0; currentEdgeOfGrid(i) < height; i++) {
+      grid.push(
+        <line
+          key={i + xLineCount}
+          x1="0"
+          y1={currentEdgeOfGrid(i)}
+          x2={height}
+          y2={currentEdgeOfGrid(i)}
+          stroke="silver"
+        />
+      );
+    }
+    return grid;
+  };
+}
 
-    ctx.fillStyle = 'green';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+export default function Grid({ width, height }) {
+  const grid = makeLines(width)(height);
 
-    points.forEach(([u, v]) => {
-      const x = u * canvas.width;
-      const y = v * canvas.height;
-
-      ctx.beginPath();
-      ctx.arc(x, y, 50, 0, Math.PI * 2, false);
-      ctx.strokeStyle = 'black';
-      ctx.lineWidth = 20;
-      ctx.stroke();
-    });
-  });
-
-  return (
-    <canvas id="Grid" ref={canvasRef} width="700px" height="700px">
-      Cartesian Plane Grid
-    </canvas>
-  );
+  return <g>{grid}</g>;
 }
