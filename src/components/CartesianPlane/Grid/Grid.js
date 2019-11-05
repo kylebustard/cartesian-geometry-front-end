@@ -1,24 +1,48 @@
 import React from 'react';
 
-export default function Grid(props) {
-  console.log('props ', props);
-  let grid = [];
-  let y = 700;
+function gridGapSize(s) {
+  return function gapSizeTimesLineNumber(i) {
+    return i * s;
+  };
+}
 
-  for (let i = 1; i < Number(props.w); i++) {
-    let x = i * 10;
-    console.log('X: ', x);
+function makeLines(width) {
+  const grid = [];
+  const currentEdgeOfGrid = gridGapSize(10);
+
+  for (let i = 0; currentEdgeOfGrid(i) < width; i++) {
     grid.push(
       <line
-        x1={x.toString()}
-        y1={y.toString()}
-        x2={x.toString()}
-        y2={y.toString()}
-        stroke="black"
+        key={i}
+        x1={currentEdgeOfGrid(i)}
+        y1="0"
+        x2={currentEdgeOfGrid(i)}
+        y2={width}
+        stroke="silver"
       />
     );
   }
+  const xLineCount = grid.push;
 
-  console.log(grid);
+  return function makeYLines(height) {
+    for (let i = 0; currentEdgeOfGrid(i) < height; i++) {
+      grid.push(
+        <line
+          key={i + xLineCount}
+          x1="0"
+          y1={currentEdgeOfGrid(i)}
+          x2={height}
+          y2={currentEdgeOfGrid(i)}
+          stroke="silver"
+        />
+      );
+    }
+    return grid;
+  };
+}
+
+export default function Grid({ width, height }) {
+  const grid = makeLines(width)(height);
+
   return <g>{grid}</g>;
 }

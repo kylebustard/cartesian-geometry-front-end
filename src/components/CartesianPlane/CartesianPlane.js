@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CartesianPlane.css';
 import Grid from './Grid/Grid';
-import XAxis from './XAxis/XAxis';
-import YAxis from './YAxis/YAxis';
+import Axes from './Axes/Axes';
+import CoordinatesSet from './CoordinatesSet/CoordinatesSet';
 
 export default function CartesianPlane() {
-  const w = '600';
-  const h = '600';
+  const [state] = useState({
+    width: 400,
+    height: 400,
+    arrowSize: 4
+  });
+
+  const { width, height, arrowSize } = state;
 
   return (
     <svg
@@ -14,17 +19,17 @@ export default function CartesianPlane() {
       role="presentation"
       version="1.1"
       baseProfile="full"
-      width={w}
-      height={h}
+      width={width}
+      height={height}
       xmlns="http://www.w3.org/2000/svg"
     >
       <title id="title" lang="en">
         Cartesian Plane
       </title>
-      <rect x="0" y="0" width={w} height={h} fill="lightblue" />
-      <Grid id="Grid" width={w} height={h} />
-      <XAxis id="XAxis" width={w} />
-      <YAxis id="YAxis" height={h} />
+      <rect x="0" y="0" width={width} height={height} fill="lightblue" />
+      <Grid id="Grid" width={width} height={height} />
+      <Axes id="Axes" width={width} height={height} arrowSize={arrowSize} />
+      <CoordinatesSet />
     </svg>
   );
 }
