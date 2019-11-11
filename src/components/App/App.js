@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './App.css';
 import CartesianPlane from '../CartesianPlane/CartesianPlane';
+import Controls from '../Controls/Controls';
 
 export default function App() {
-  return <CartesianPlane />;
+  return (
+    <Fragment>
+      <CartesianPlane id="CartesianPlane" />
+      <Controls id="Controls" />
+    </Fragment>
+  );
 }

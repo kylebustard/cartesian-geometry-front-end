@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CartesianPlane.css';
 import Grid from './Grid/Grid';
 import Axes from './Axes/Axes';
+import CoordinatesSet from './CoordinatesSet/CoordinatesSet';
 
 export default function CartesianPlane() {
-  const state = {
-    width: 700,
-    height: 700,
+  const [state] = useState({
+    width: 400,
+    height: 400,
     arrowSize: 4
-  };
+  });
 
   const { width, height, arrowSize } = state;
 
@@ -28,6 +29,7 @@ export default function CartesianPlane() {
       <rect x="0" y="0" width={width} height={height} fill="lightblue" />
       <Grid id="Grid" width={width} height={height} />
       <Axes id="Axes" width={width} height={height} arrowSize={arrowSize} />
+      <CoordinatesSet />
     </svg>
   );
 }

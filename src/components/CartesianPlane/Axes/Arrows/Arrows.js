@@ -68,7 +68,9 @@ function makeArrows(width, height, arrowSize) {
   );
 
   const arrows = [negativeX, positiveX, negativeY, positiveY];
-  const arrowList = arrows.map(p => <polygon points={p} stroke="black" />);
+  const arrowList = arrows.map((p, index) => (
+    <polygon key={index} points={p} stroke="black" />
+  ));
   return arrowList;
 }
 
