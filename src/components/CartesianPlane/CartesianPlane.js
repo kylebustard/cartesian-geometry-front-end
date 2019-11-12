@@ -4,14 +4,31 @@ import Grid from './Grid/Grid';
 import Axes from './Axes/Axes';
 import CoordinatesSet from './CoordinatesSet/CoordinatesSet';
 
+function coordinatePairToSVG(unit) {
+  return function unitTimesCoordinatePair(pair) {
+    return [pair[0] * unit, pair[1] * unit];
+  };
+}
+
 export default function CartesianPlane() {
   const [state] = useState({
-    width: 400,
-    height: 400,
+    width: 500,
+    height: 500,
     arrowSize: 4
   });
 
   const { width, height, arrowSize } = state;
+  const gridGapSize = (width || height) / 10;
+  const origin = [width / 2, height / 2];
+  const unit = 50;
+
+  const setOne = [2, 0];
+  const setTwo = [2, 4];
+  const setThree = [4, 3];
+
+  const set = [setOne, setTwo, setThree];
+  const unitTimesCoordinatePair = coordinatePairToSVG(unit);
+  const payload = set.map(p => unitTimesCoordinatePair(p));
 
   return (
     <svg
@@ -27,9 +44,9 @@ export default function CartesianPlane() {
         Cartesian Plane
       </title>
       <rect x="0" y="0" width={width} height={height} fill="lightblue" />
-      <Grid id="Grid" width={width} height={height} />
+      <Grid id="Grid" width={width} height={height} gapSize={gridGapSize} />
       <Axes id="Axes" width={width} height={height} arrowSize={arrowSize} />
-      <CoordinatesSet />
+      <CoordinatesSet width={width} height={height} set={payload} />
     </svg>
   );
 }

@@ -8,7 +8,7 @@ export default function Point({ cx, cy }) {
       r="2"
       stroke="red"
       fill="transparent"
-      stroke-width="2"
+      strokeWidth="2"
     />
   );
 }
