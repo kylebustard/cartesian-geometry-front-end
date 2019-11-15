@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+# linters and formatters
+.prettierrc
+.vscode
+
 # production
 /build
 

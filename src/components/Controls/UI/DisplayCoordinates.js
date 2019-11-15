@@ -1,18 +1,27 @@
-import React from 'react';
-import Set from '../Coordinates/Set/Set';
-import DisplayAddSet from './DisplayAddSet';
+import React from "react";
+import Set from "../Coordinates/Set/Set";
+import DisplayAddSet from "./DisplayAddSet";
 
-export default function DisplayCoordinates({ numSets, addSet }) {
-  const coordinatesSets = [];
+export default function DisplayCoordinates({
+    numberOfSets,
+    addSet,
+    coordinatesSets,
+    updateCoordinates
+}) {
+    const displaySet = [];
 
-  for (let i = 0; i < numSets; i++) {
-    coordinatesSets.push(
-      <li key={i}>
-        <Set setId={i + 1} />
-        <DisplayAddSet numSets={numSets} addSet={addSet} />
-      </li>
-    );
-  }
+    for (let i = 0; i < numberOfSets; i++) {
+        displaySet.push(
+            <li key={i}>
+                <Set
+                    setId={i + 1}
+                    coordinatesSets={coordinatesSets}
+                    updateCoordinates={updateCoordinates}
+                />
+                <DisplayAddSet numberOfSets={numberOfSets} addSet={addSet} />
+            </li>
+        );
+    }
 
-  return <ul>{coordinatesSets}</ul>;
+    return <ul>{displaySet}</ul>;
 }

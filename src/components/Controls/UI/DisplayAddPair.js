@@ -1,8 +1,9 @@
-import React from 'react';
-import AddPair from '../Coordinates/Pair/AddPair';
+import React from "react";
+import AddPair from "../Coordinates/Pair/AddPair";
 
-export default function DisplayAddPair({ numPairs, addPair, maxPairs }) {
-  const pairs = numPairs < maxPairs ? <AddPair addPair={addPair} /> : null;
+export default function DisplayAddPair({ numberOfPairs, addPair, maxPairs }) {
+    const pairs =
+        numberOfPairs < maxPairs ? <AddPair addPair={addPair} /> : null;
 
-  return <div id="addCoordinatesPair">{pairs}</div>;
+    return <div id="addCoordinatesPair">{pairs}</div>;
 }
