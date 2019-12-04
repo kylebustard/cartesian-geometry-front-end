@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import SetForm from "./SetForm";
 import DisplayAddPair from "../../UI/DisplayAddPair";
 
-export default function Set({ setId, coordinatesSets, updateCoordinates }) {
+export default function Set({ setId, coordinatesSets, updateCoordinatesSets }) {
     const [pairs, setPairs] = useState({
         numberOfPairs: 1,
         maxPairs: 3
@@ -20,7 +20,7 @@ export default function Set({ setId, coordinatesSets, updateCoordinates }) {
         <Fragment>
             <SetForm
                 coordinatesSets={coordinatesSets}
-                updateCoordinates={updateCoordinates}
+                updateCoordinatesSets={updateCoordinatesSets}
                 setId={setId}
                 numberOfPairs={numberOfPairs}
             />

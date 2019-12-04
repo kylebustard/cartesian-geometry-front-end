@@ -6,7 +6,7 @@ export default function DisplayCoordinates({
     numberOfSets,
     addSet,
     coordinatesSets,
-    updateCoordinates
+    updateCoordinatesSets
 }) {
     const displaySet = [];
 
@@ -16,7 +16,7 @@ export default function DisplayCoordinates({
                 <Set
                     setId={i + 1}
                     coordinatesSets={coordinatesSets}
-                    updateCoordinates={updateCoordinates}
+                    updateCoordinatesSets={updateCoordinatesSets}
                 />
                 <DisplayAddSet numberOfSets={numberOfSets} addSet={addSet} />
             </li>

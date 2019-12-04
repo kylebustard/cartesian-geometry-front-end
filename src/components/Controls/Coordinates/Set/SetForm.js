@@ -3,19 +3,31 @@ import Pair from "../Pair/Pair";
 
 export default function SetForm({
     coordinatesSets,
-    updateCoordinates,
+    updateCoordinatesSets,
     setId,
     numberOfPairs
 }) {
-    const coordinatePairs = [];
+    const coordinatePairs = (function() {
+        let pairsArray = [];
 
-    for (let i = 0; i < numberOfPairs; i++) {
-        coordinatePairs.push(
-            <li key={i}>
-                <Pair pairId={i} />
-            </li>
-        );
-    }
+        for (let i = 0; i < numberOfPairs; i++) {
+            pairsArray.push(
+                <li key={i}>
+                    <Pair pairId={i} />
+                </li>
+            );
+        }
+        return pairsArray;
+    })();
+
+    // const coordinatePairs = (function makeArray(array, n, max) {
+    //     const pairComponentLI = (
+    //         <li key={n}>
+    //             <Pair pairId={n} />
+    //         </li>
+    //     );
+    //     return n <= max ? makeArray([...array, pairComponentLI], n + 1, max) : array;
+    // })([], 1, numberOfPairs);
 
     return (
         <form
@@ -24,7 +36,7 @@ export default function SetForm({
                 for (let i = 0; i < numberOfPairs; i++) {
                     let x = event.target.elements[`${i}-x`];
                     let y = event.target.elements[`${i}-y`];
-                    updateCoordinates([
+                    updateCoordinatesSets([
                         ...coordinatesSets,
                         {
                             setId: setId,

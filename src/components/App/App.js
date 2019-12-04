@@ -4,7 +4,7 @@ import CartesianPlane from "../CartesianPlane/CartesianPlane";
 import Controls from "../Controls/Controls";
 
 export default function App() {
-    const [coordinatesSets, updateCoordinates] = useState([]);
+    const [coordinatesSets, updateCoordinatesSets] = useState([]);
     console.log(coordinatesSets);
     return (
         <Fragment>
@@ -15,7 +15,7 @@ export default function App() {
             <Controls
                 id="Controls"
                 coordinatesSets={coordinatesSets}
-                updateCoordinates={updateCoordinates}
+                updateCoordinatesSets={updateCoordinatesSets}
             />
         </Fragment>
     );
